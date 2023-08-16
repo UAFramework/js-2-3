@@ -9,7 +9,7 @@ function readingList(books) {
 
     p.textContent = `${book.title} by ${book.author}`;
     img.src = book.bookCoverImage;
-    img.alt = `${book.title} Cover Image`;
+    // img.alt = `${book.title} Cover Image`;
 
     li.appendChild(p);
     li.appendChild(img);

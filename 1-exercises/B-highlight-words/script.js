@@ -3,9 +3,14 @@ function highlightWords(paragraph, colours) {
     const p = document.createElement('p');
     const select = document.createElement('select');
 
+    let option = document.createElement('option');
+    option.textContent = 'Please choose a colour';
+    select.appendChild(option);
+
     colours.forEach(colour => {
-        const option = document.createElement('option');
-        option.textContent = colour;
+        let option = document.createElement('option');
+        option.textContent = colour.charAt(0).toUpperCase() + colour.slice(1);
+        option.value = colour;
         select.appendChild(option);
     });
 
