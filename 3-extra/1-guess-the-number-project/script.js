@@ -1,40 +1,49 @@
 let randomNumber = Math.floor(Math.random() * 100 + 1);
 let attempts = 5;
+let phrases = {
+  default: 'Guess a number between 1 and 100',
+  win: 'You win )))',
+  high: 'Number is too high, try again',
+  low: 'Number is too low, try again',
+  lose: 'You Lose, the number was ' + randomNumber,
+  enterNumbBtw: 'Please enter a number between 1 and 100',
+  numberOfTries: 'Number of Tries: ',
+}
 
 function guessNumber() {
   let guess = document.querySelector(".inputs-Values").value;
-  if (!validate(guess)) {
-    return;
-  }
+  if (!validate(guess)) return;
 
-  switch ((guess < randomNumber) ? -1 : (guess > randomNumber) ? 1 : 0) {
-    case 0:
-      document.querySelector('.final-output').textContent = 'You win )))';
-      break;
-
-    case 1:
-      document.querySelector('.final-output').textContent = 'Number is too high, try again';
-      break;
-
-    case -1:
-      document.querySelector('.final-output').textContent = 'Number is too low, try again';
-      break;
-
-    default:
-      alert('Error: unexpected number');
-  }
+  attempts--;
+  let result = (guess < randomNumber) ? 'low' : (guess > randomNumber) ? 'high' : 'win';
+  result = (result !== 'win' && attempts === 0) ? 'lose' : result;
+  updateTextContent('.final-output', phrases[result]);
+  updateTriesOutput(attempts);
 }
 
 function validate(guess) {
   if (attempts === 0) {
-    return;
+    updateTextContent('.final-output', phrases['lose']);
+
+    return false;
   }
 
-  if (guess < 0 || guess > 100) {
-    document.querySelector('.final-output').textContent = 'Please enter a number between 1 and 100';
-    return;
+  if (guess < 0 || guess > 100 || guess === '') {
+    updateTextContent('.final-output', phrases['enterNumbBtw']);
+
+    return false;
   }
+
   return true;
+}
+
+function updateTextContent(cssClass, text)
+{
+  document.querySelector(cssClass).textContent = text;
+}
+
+function updateTriesOutput(attempts) {
+    updateTextContent('.Tries-output', phrases['numberOfTries'] + attempts);
 }
 
 function newGame() {
@@ -47,6 +56,8 @@ function keyBoardEvents(e) {
   }
 }
 
-document.querySelector(".btnGuess").addEventListener("click", guessNumber);
-document.querySelector(".btnNewGame").addEventListener("click", newGame);
-document.addEventListener("keypress", keyBoardEvents);
+updateTextContent('.final-output', phrases['default']);
+updateTriesOutput(attempts);
+document.querySelector('.btnGuess').addEventListener('click', guessNumber);
+document.querySelector('.btnNewGame').addEventListener('click', newGame);
+document.addEventListener('keypress', keyBoardEvents);
