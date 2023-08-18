@@ -27,3 +27,7 @@ span.badge {
 span.badge i {
     margin-right: 10px;
 }
+span.deadline {
+    float: right;
+    margin: 0 10px;
+}

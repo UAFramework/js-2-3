@@ -7,6 +7,12 @@ function populateTodoList(todos) {
     let span = document.createElement('span');
     span.classList.add('badge', 'bg-primary', 'rounded-pill');
 
+    let dateSpan = document.createElement('span');
+    dateSpan.classList.add('deadline')
+    let daysLeft = daysUntil(todo.deadline);
+    dateSpan.innerText = daysLeft >= 0 ? daysLeft + ' days left': -daysLeft + ' days overdue'
+    li.appendChild(dateSpan);
+
     ['fa-check', 'fa-trash'].forEach(iCssClass => {
       let i = document.createElement('i');
       i.classList.add('fa');
@@ -30,17 +36,20 @@ function populateTodoList(todos) {
 
 function addNewTodo(event) {
   event.preventDefault();
-  let value = document.getElementById('todoInput').value;
-  if (value === '') {
+  let taskText = document.getElementById('todoInput').value;
+  if (taskText === '') {
     alert('Value can not be empty');
     return;
   }
   document.getElementById('todoInput').value = '';
 
+  let date = document.getElementById('datepicker').value;
+
   populateTodoList([{
-    task: value,
+    task: taskText,
     completed: false,
-  }]);
+    deadline: date,
+}]);
 }
 
 function deleteAllCompletedTodos(event) {
@@ -57,6 +66,15 @@ function deleteAllCompletedTodos(event) {
   });
 }
 
+function daysUntil(targetDateStr) {
+  let parts = targetDateStr.split('/');
+  let targetDate = new Date(parts[2], parts[0] - 1, parts[1]);
+
+  let currentDate = new Date();
+
+  return Math.ceil((targetDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24));
+}
+
 let addButton = document.querySelector('.btn-primary');
 addButton.addEventListener('click', addNewTodo);
 
@@ -64,8 +82,8 @@ let removeButton = document.getElementById('remove-all-completed');
 removeButton.addEventListener('click', deleteAllCompletedTodos);
 
 let todos = [
-  { task: "Wash the dishes", completed: false },
-  { task: "Do the shopping", completed: false },
+  { task: "Wash the dishes", completed: false, deadline: '05/16/2024' },
+  { task: "Do the shopping", completed: false, deadline: '05/16/2024' },
 ];
 
 populateTodoList(todos);
