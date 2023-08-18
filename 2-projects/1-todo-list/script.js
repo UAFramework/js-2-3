@@ -10,10 +10,15 @@ function populateTodoList(todos) {
     ['fa-check', 'fa-trash'].forEach(iCssClass => {
       let i = document.createElement('i');
       i.classList.add('fa');
-      i.classList.add(iCssClass)
+      i.classList.add(iCssClass);
       i.setAttribute("aria-hidden", "true");
       i.addEventListener('click', function(event) {
-        event.target.closest('li').classList.toggle('crossed-text');
+        if (iCssClass === 'fa-check') {
+          event.target.closest('li').classList.toggle('crossed-text');
+        }
+        if (iCssClass === 'fa-trash') {
+          event.target.closest('li').remove();
+        }
       });
       span.appendChild(i);
     });
