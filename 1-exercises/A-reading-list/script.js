@@ -1,5 +1,27 @@
 function readingList(books) {
-  // Write your code here...
+  const content = document.querySelector("#content");
+  const list = document.createElement("ul");
+  content.appendChild(list);
+
+  for (let i = 0; i < books.length; i++) {
+    const li = document.createElement("li");
+    if (books[i]["alreadyRead"]) {
+      li.className = "greenLi";
+    } else {
+      li.className = "redLi";
+    }
+
+    const p = document.createElement("p");
+    p.textContent = `${books[i]["title"]} by ${books[i]["author"]}`;
+
+    const img = document.createElement("img");
+    img.src = books[i]["bookCoverImage"];
+
+    li.append(p, img);
+    list.appendChild(li);
+  }
+
+  return content;
 }
 
 // for the tests, do not modify this array of books
