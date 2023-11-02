@@ -1,12 +1,56 @@
 body {
-    background-image: url(assets/world.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: auto 100%;
-  }
+  background-image: url(assets/world.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: auto 100%;
+}
 
-  .container {
-    margin-top: 150px;
-    width: 90%;
-  }
+.container {
+  margin-top: 150px;
+  width: 90%;
+  background-color: rgba(226, 219, 219, 0.4);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.navbar {
+  background-color: #007bff;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Styles for adding a new task card */
+.card {
+  margin-top: 20px;
+}
+
+.card-header {
+  background-color: #7b5fe2;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #4d4e81;
+  color: rgb(255, 249, 249);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  border: 2px solid #0b3f77;
+  border-radius: 5px;
+}
+
+/* Styles to remove all completed tasks */
+#remove-all-completed {
+  margin-top: 10px;
+}
+
+.list-group li {
+  font-weight: bold;
+}
