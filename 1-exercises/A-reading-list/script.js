@@ -1,6 +1,30 @@
 function readingList(books) {
-  // Write your code here...
+  let content = document.getElementById('content');
+  
+            
+  for(let i=0; i<books.length; i++){
+  let paragraph = document.createElement("p");
+  let text = document.createTextNode(books[i].title + " by " + books[i].author);
+  paragraph.appendChild(text);
+  let li = document.createElement('li');
+  li.appendChild(paragraph);
+  
+  let picture = document.createElement("img");
+  picture.setAttribute("src", books[i].bookCoverImage);
+  li.appendChild(picture);        
+    
+       
+  if (books[i].alreadyRead === true){
+    li.setAttribute('style', 'background-color: green;');
+  } else {
+    li.setAttribute('style', 'background-color: red;');
+  }
+  
+  document.getElementById("reading-list").appendChild(li);
 }
+}
+  // Write your code here...
+
 
 // for the tests, do not modify this array of books
 const books = [
