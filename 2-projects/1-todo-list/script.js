@@ -81,7 +81,7 @@ addToDoButton.addEventListener("click", addNewTodo);
 
 
 // Advanced challenge: Write a fucntion that checks the todos in the todo list and deletes the completed ones (we can check which ones are completed by seeing if they have the line-through styling applied or not).
-function deleteAllCompletedTodos() {
+function deleteAllCompletedTodos(event) {
   // Write your code here...
   const list = document.getElementById("todo-list");
   const completedTodos = list.querySelectorAll("li[style*='line-through']");
@@ -90,5 +90,6 @@ function deleteAllCompletedTodos() {
   });
 
   const removeButton = document.querySelector("#remove-all-completed");
-  removeButton.addEventListener("click", removeAllDoneTodos);
+  removeButton.addEventListener("click", deleteAllCompletedTodos);
 }
+

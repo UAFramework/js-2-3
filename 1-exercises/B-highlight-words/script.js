@@ -27,26 +27,9 @@ function highlightWords(paragraph, colours) {
   });
 
   return content;
+ 
+  
 
-  
-  
-//   for (let i = 0; i < paragDropdown.length; i++) {
-//     let option = document.createElement("option");
-//     option.value = paragDropdown[i];
-//     option.text = paragDropdown[i];
-//     selectList.appendChild(option);
-//     // span = document.createElement("span");
-//     // span.innerHTML =  paragDropdown[i];
-//     // option.addElement(span);
-// }
-  
-// paragDropdown = document.querySelectorAll('span');
-
-  
-// document.getElementById('content').appendChild(span);
-// document.getElementById("content").innerHTML= options;
-
-  
   // Write your code here...
 }
 
